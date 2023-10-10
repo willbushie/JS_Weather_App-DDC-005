@@ -1,0 +1,9 @@
+version: '3'
+services:
+  dev-apache-server:
+    image: httpd:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public/:/usr/local/apache2/htdocs
+    container_name: 1009-apache-container
