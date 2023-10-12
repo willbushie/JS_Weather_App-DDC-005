@@ -23,8 +23,30 @@
     background-color: rgba(74, 160, 255, 0.7);
     border-radius: 10px;
     border: 1px solid #00000069;
-    max-width: 250px;
+    width: 250px;
     height: 350px;
+    padding: 6px;
+    margin: 8px;
+}
+
+/* Hourly forecast */
+#hourly_header {
+    text-align: center;
+}
+
+#hourly_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.hourly_period {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    border: 1px solid #00000069;
+    width: 200px;
+    height: 250px;
     padding: 6px;
     margin: 8px;
 }

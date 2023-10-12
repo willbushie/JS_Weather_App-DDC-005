@@ -11,8 +11,13 @@ update_btn.addEventListener('click', function() {
     let data = fetchGeoInfo(latitude, longitude);
     console.log(data);
     console.log('update button was pressed');
+
+    clearContainers();
 });
 
+/* add event listener to clear button */
+const clear_button = document.getElementById('clear_data');
+clear_button.addEventListener('click', clearContainers);
 
 
 /** 
@@ -167,7 +172,8 @@ async function fetchHourly(gridId, gridX, gridY) {
         const response = await fetch(`https://api.weather.gov/gridpoints/${gridId}/${gridX},${gridY}/forecast/hourly`);
         const data = await response.json();
 
-        const periods = data['properties']['periods'];
+        const all_periods = data['properties']['periods'];
+        const periods = all_periods.slice(0,48);
 
         /* the existing, parent div */
         const hourly_container = document.getElementById('hourly_container');
@@ -195,14 +201,15 @@ async function fetchHourly(gridId, gridX, gridY) {
             
             /* create the new HTML elements */
             const period_container = document.createElement('div');
-            period_container.setAttribute('class',`hourly_period`);
+            period_container.setAttribute('class','hourly_period');
             period_container.setAttribute('id',`hourly_p${number}`);
             
             // const timestamp = Date.parse(start_time); /* formatted in IOS 8601 */
             // const corrected_timezone = timestamp.toLocaleString('en-US')
             const period_name = document.createElement('h3');
             period_name.setAttribute('id',`p${number}_name`);
-            period_name.textContent = `${start_time} | ${temperature} ${temperature_unit}`;
+            const formatted_time = getReadableTime(start_time);
+            period_name.textContent = `${formatted_time} | ${temperature} ${temperature_unit}`;
             
             const peroid_forecast_short = document.createElement('p');
             peroid_forecast_short.setAttribute('id',`p${number}_forecast_short`);
@@ -240,6 +247,7 @@ async function fetchHourly(gridId, gridX, gridY) {
     }
 }
 
+
 /**
  * Set the name of the tab.
  * 
@@ -253,5 +261,79 @@ function setTabName(text = null) {
     }
     else {
         tab_name.textContent = 'Weather';
+    }
+}
+
+
+/**
+ * Convert ISO 8601 (`2023-10-11T22:00:00-04:00`) formatted date to:
+ * `Thursday 10 PM`
+ * 
+ * @param {string} input_date
+ * 
+ * @returns {string}
+ */
+function getReadableTime(input_date) {
+    const date = new Date(input_date);
+    const weekdays = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'
+    ];
+    const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ];
+
+    const day_of_week = weekdays[date.getUTCDay()];
+    const day_of_month = date.getUTCDate();
+    const month = months[date.getMonth()];
+    const hours = date.getUTCHours();
+    const minutes = date.getUTCMinutes();
+
+    const formatted_time = hours >= 12 ? `${hours % 12} PM` : `${hours} AM`;
+    const formatted_output = `${day_of_week} ${formatted_time}`;
+
+    return formatted_output;
+}
+
+
+/**
+ * Clear the containers for new data.
+ */
+function clearContainers() {
+    try {
+        const seven_day_container = document.getElementById('seven_day_container');
+        const hourly_container = document.getElementById('hourly_container');
+
+        /* clear 7 day container */
+        while (seven_day_container.firstChild) {
+            seven_day_container.removeChild(seven_day_container.firstChild);
+        }
+        
+        /* clear hourly container */
+        while (hourly_container.firstChild) {
+            hourly_container.removeChild(hourly_container.firstChild);
+        }
+
+        console.log('containers were cleared.');
+    }
+    catch(error) {
+        alert('There was an error clearing the containers.');
+        // console.log(error.message);
     }
 }
