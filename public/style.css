@@ -1,0 +1,30 @@
+/* Page header & location selection */
+#page_header {
+    text-align: center;
+}
+
+#location_selection_container {
+    text-align: center;
+}
+
+/* Seven day forecast */
+#seven_day_header {
+    text-align: center;
+}
+
+#seven_day_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.seven_day_period {
+    background-color: rgba(74, 160, 255, 0.7);
+    border-radius: 10px;
+    border: 1px solid #00000069;
+    max-width: 250px;
+    height: 350px;
+    padding: 6px;
+    margin: 8px;
+}

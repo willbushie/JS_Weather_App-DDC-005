@@ -43,6 +43,7 @@ async function fetchGeoInfo(latitude, longitude) {
         /* update page information */
         document.getElementById('seven_day_header').textContent = `7 Day Forecast | ${city}, ${state}`;
         document.getElementById('hourly_header').textContent = `Hourly Forecast (48 Hours) | ${city}, ${state}`;
+        setTabName(`${city}, ${state}`);
 
         /* call other methods */
         fetchSevenDay(gridId, gridX, gridY);
@@ -94,10 +95,17 @@ async function fetchSevenDay(gridId, gridX, gridY) {
             const wind_direction = period['windDirection'];
             const short_forecast = period['shortForecast'];
             const detailed_forecast = period['detailedForecast'];
-            
+
             /* create the new HTML elements */
             const period_container = document.createElement('div');
-            
+            period_container.setAttribute('class',`seven_day_period`);
+            period_container.setAttribute('id',`seven_day_p${number}`);
+
+            const sliced_name = name.slice(-5);
+            if (sliced_name === 'Night' || sliced_name === 'night') {
+                period_container.style.backgroundColor = 'rgba(0, 0, 30, 0.5)';
+            }
+
             const period_name = document.createElement('h3');
             period_name.setAttribute('id',`p${number}_name`);
             period_name.textContent = `${name} | ${temperature} ${temperature_unit}`;
@@ -109,10 +117,15 @@ async function fetchSevenDay(gridId, gridX, gridY) {
             const peroid_forecast_detailed = document.createElement('p');
             peroid_forecast_detailed.setAttribute('id',`p${number}_forecast_detailed`);
             peroid_forecast_detailed.textContent = `${detailed_forecast}`;
-
+            
             const period_precipitation = document.createElement('p');
             period_precipitation.setAttribute('id',`p${name}_precipitation`);
-            period_precipitation.textContent = `Precipitation: ${precipitation_value}%`
+            if (precipitation_value === null) {
+                period_precipitation.textContent = 'Precipitation: 0%';
+            }
+            else {
+                period_precipitation.textContent = `Precipitation: ${precipitation_value}%`;
+            }
 
             const period_wind = document.createElement('p');
             period_wind.setAttribute('id',`p${number}_wind`);
@@ -182,6 +195,8 @@ async function fetchHourly(gridId, gridX, gridY) {
             
             /* create the new HTML elements */
             const period_container = document.createElement('div');
+            period_container.setAttribute('class',`hourly_period`);
+            period_container.setAttribute('id',`hourly_p${number}`);
             
             // const timestamp = Date.parse(start_time); /* formatted in IOS 8601 */
             // const corrected_timezone = timestamp.toLocaleString('en-US')
@@ -199,7 +214,7 @@ async function fetchHourly(gridId, gridX, gridY) {
 
             const period_precipitation = document.createElement('p');
             period_precipitation.setAttribute('id',`p${name}_precipitation`);
-            period_precipitation.textContent = `Precipitation: ${precipitation_value}%`
+            period_precipitation.textContent = `Precipitation: ${precipitation_value}%`;
 
             const period_wind = document.createElement('p');
             period_wind.setAttribute('id',`p${number}_wind`);
@@ -222,5 +237,21 @@ async function fetchHourly(gridId, gridX, gridY) {
     catch(error) {
         alert('There was an error loading the hourly forecast data.');
         console.log(error.message);
+    }
+}
+
+/**
+ * Set the name of the tab.
+ * 
+ * @param {string} [text=null]
+ */
+function setTabName(text = null) {
+    const tab_name = document.getElementById('tab_name');
+
+    if (text != null) {
+        tab_name.textContent = `Weather | ${text}`;
+    }
+    else {
+        tab_name.textContent = 'Weather';
     }
 }

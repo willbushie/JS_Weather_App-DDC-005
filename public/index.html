@@ -5,23 +5,23 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Weather</title>
+        <title id="tab_name">Weather</title>
     </head>
     <body>
-        <h1>Weather | NOAA API</h1>
-        <input id="longitude_input" type="text" value="40.663468"></input>
-        <input id="latitude_input" type="text" value="-73.938697"></input>
-        <button id="update_data">Update Weather Data</button>
+        <h1 id="page_header">Weather | NOAA API</h1>
+        <div id="location_selection_container">
+            <input id="longitude_input" type="text" value="40.663468"></input>
+            <input id="latitude_input" type="text" value="-73.938697"></input>
+            <button id="update_data">Update Weather Data</button>
+        </div>
 
         <!-- Seven Day Forecast -->
-        <div id="seven_day_container">
-            <h2 id="seven_day_header">7 Day Forecast | None</h2>
-        </div>
+        <h2 id="seven_day_header">7 Day Forecast | None</h2>
+        <div id="seven_day_container"></div>
 
         <!-- Hourly Forecast -->
-        <div id="hourly_container">
-            <h2 id="hourly_header">Hourly Forecast | None</h2>
-        </div>
+        <h2 id="hourly_header">Hourly Forecast | None</h2>
+        <div id="hourly_container"></div>
 
         <!-- Set JS Reference -->
         <script src="index.js"></script>
