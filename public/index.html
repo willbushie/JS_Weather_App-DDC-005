@@ -8,6 +8,9 @@
         <title id="tab_name">Weather</title>
     </head>
     <body>
+        <!-- Header -->
+        <header></header>
+        
         <h1 id="page_header">Weather | NOAA API</h1>
         <div id="location_selection_container">
             <input id="longitude_input" type="text" value="40.663468"></input>
@@ -23,6 +26,14 @@
         <!-- Hourly Forecast -->
         <h2 id="hourly_header">Hourly Forecast (48 Hours)</h2>
         <div id="hourly_container"></div>
+
+        <!-- Page Footer -->
+        <footer class="page_footer">
+            <div id="page_links" style="text-align: center;">
+                <a href="https://www.weather.gov/documentation/services-web-api">NOAA API</a>
+                <a href="https://github.com/willbushie/JS_Weather_App-DDC-005">GitHub Repository</a>
+            </div>
+        </footer>
 
         <!-- Set JS Reference -->
         <script src="index.js"></script>
