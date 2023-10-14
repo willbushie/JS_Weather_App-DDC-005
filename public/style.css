@@ -52,6 +52,16 @@
 }
 
 /* Footer */
-.page_footer {}
+.page_footer {
+    display: flex;
+    height: 300px;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.06);
+}
 
-#page_links {}
+#page_links {
+    padding-top: 20px;
+    text-align: center;
+    vertical-align: start;
+}
