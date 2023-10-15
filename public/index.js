@@ -106,10 +106,10 @@ async function fetchSevenDay(gridId, gridX, gridY) {
             period_container.setAttribute('class',`seven_day_period`);
             period_container.setAttribute('id',`seven_day_p${number}`);
 
-            const sliced_name = name.slice(-5);
+            /* const sliced_name = name.slice(-5);
             if (sliced_name === 'Night' || sliced_name === 'night') {
                 period_container.style.backgroundColor = 'rgba(0, 0, 30, 0.5)';
-            }
+            } */
 
             const period_name = document.createElement('h3');
             period_name.setAttribute('id',`p${number}_name`);
