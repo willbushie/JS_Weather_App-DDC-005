@@ -12,8 +12,8 @@ This project is a simple weather app. Simple information gathered from an API wi
 
 - [x] A location can be input to see the weather at that location (latitude and longitude).
 - [ ] A location can be input to see the weather at that location (city/zip code).
-- [ ] Simple and decent looking webpage to show the weather data.
-- [ ] The page loads quickly.
+- [x] Simple and decent looking webpage to show the weather data.
+- [x] The page loads quickly.
 
 ## How To Test
 
@@ -43,9 +43,10 @@ Here are the steps I took to accomplish this project.
 1. Write the README (using a template) and create the basic files needed (10 mins).
 2. Test and understand the [NOAA API](https://www.weather.gov/documentation/services-web-api) (1 hr 45 mins).
 3. Show unstyled weather information on NYC (2 hrs).
-4. Style the webpage to be more digestible (). 
+4. Style the webpage to be more digestible (2 hr 25 mins). 
+5. Optimize and improve location selection process (45 mins). 
 
-**Total project time (including coding & research): **
+**Total project time (including coding & research): 7 hrs 5 mins**
 
 ## What I Learned
 
@@ -56,6 +57,7 @@ A list of things that I learned during this project.
 - How to work with dates and times using the built in `Date` object.
 - Parsing JSON data in JavaScript.
 - Interacting with an API with JavaScript.
+- How to use `.env` files and how these files are not accessible on the frontend.
 
 ## Contact
 

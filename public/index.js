@@ -19,6 +19,9 @@ update_btn.addEventListener('click', function() {
 const clear_button = document.getElementById('clear_data');
 clear_button.addEventListener('click', clearContainers);
 
+/* click the update button upon page refresh */
+update_btn.click();
+
 
 /** 
  * Fetch geolocation information. This information is needed before any weather data
