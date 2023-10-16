@@ -305,7 +305,7 @@ function getReadableTime(input_date) {
     const hours = date.getUTCHours();
     const minutes = date.getUTCMinutes();
 
-    const formatted_time = hours >= 12 ? `${hours % 12} PM` : `${hours} AM`;
+    const formatted_time = hours === 0 ? `12 AM` : hours === 12 ? `12 PM` : hours >= 12 ? `${hours % 12} PM` : `${hours} AM`;
     const formatted_output = `${day_of_week} ${formatted_time}`;
 
     return formatted_output;
